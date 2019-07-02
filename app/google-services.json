@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "662224807206",
+    "firebase_url": "https://textrecognise-5c2af.firebaseio.com",
+    "project_id": "textrecognise-5c2af",
+    "storage_bucket": "textrecognise-5c2af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662224807206:android:81e81f9a087a5ceb",
+        "android_client_info": {
+          "package_name": "com.example.tanmay.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662224807206-8vsauafkvup0v8gnl5ivll84f0pja8pn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tanmay.myapplication",
+            "certificate_hash": "7b494f53862ecb147da6ec0dea2d4567194a1736"
+          }
+        },
+        {
+          "client_id": "662224807206-b43br3j8c131te47t0daq16feaqbjfn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIhRAGNiXzsoA1ScSXQRoL1V4lgNPoeFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662224807206-b43br3j8c131te47t0daq16feaqbjfn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
