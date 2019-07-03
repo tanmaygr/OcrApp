@@ -21,6 +21,7 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -65,6 +66,7 @@ public class camera extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         vanshaj=findViewById(R.id.textView2);
+        vanshaj.setMovementMethod(new ScrollingMovementMethod());
         imageView = (ImageView)this.findViewById(R.id.imageView1);
         Button photoButton = (Button) this.findViewById(R.id.button1);
         phrase= string;
@@ -212,46 +214,43 @@ public class camera extends AppCompatActivity {
                                     Point[] blockCornerPoints = block.getCornerPoints();
                                     Rect blockFrame = block.getBoundingBox();
 
-                                    if (blockText.equals(phrase)){
-                                        Log.d("PointAndRect",blockText+" -> "+blockFrame.toString());
-                                        Bitmap mutableBitmap = photo.copy(Bitmap.Config.ARGB_8888, true);
-                                        Canvas canvas = new Canvas(mutableBitmap);
 
-                                        Paint paint = new Paint();
-//                                        paint.setStyle(Paint.Style.STROKE);
-                                        paint.setStrokeWidth(12);
-                                        paint.setColor(Color.BLACK);
-                                        paint.setStyle(Paint.Style.STROKE);
-                                        Rect rectangle = new Rect(blockFrame);
-
-                                        canvas.drawRect(rectangle,paint);
-                                        imageView.setImageBitmap(mutableBitmap);
-                                        break;
-                                    }
-//                                    for (FirebaseVisionText.Line line: block.getLines()) {
-//                                        String lineText = line.getText();
-//                                        Log.d("InSecondLoop",lineText);
-//                                        Float lineConfidence = line.getConfidence();
-////                                        Log.d("lineConf",lineConfidence);
-//                                        List<RecognizedLanguage> lineLanguages = line.getRecognizedLanguages();
-//                                        Point[] lineCornerPoints = line.getCornerPoints();
-//                                        if(lineCornerPoints!=null)
-//                                        Log.d("inLINEPOINTS",lineCornerPoints.toString());
-//                                        Rect lineFrame = line.getBoundingBox();
+                                    for (FirebaseVisionText.Line line: block.getLines()) {
+                                        String lineText = line.getText();
+                                        Log.d("InSecondLoop",lineText);
+                                        Float lineConfidence = line.getConfidence();
+//                                        Log.d("lineConf",lineConfidence);
+                                        List<RecognizedLanguage> lineLanguages = line.getRecognizedLanguages();
+                                        Point[] lineCornerPoints = line.getCornerPoints();
+                                        if(lineCornerPoints!=null)
+                                        Log.d("inLINEPOINTS",lineCornerPoints.toString());
+                                        Rect lineFrame = line.getBoundingBox();
 //                                        Paint paint=new Paint();
-////                                        for (FirebaseVisionText.Element element: line.getElements()) {
-//                                            String elementText = element.getText();
-//                                            Float elementConfidence = element.getConfidence();
-//                                            List<RecognizedLanguage> elementLanguages = element.getRecognizedLanguages();
-//                                            Point[] elementCornerPoints = element.getCornerPoints();
-//                                            Rect elementFrame = element.getBoundingBox();
-//                                            Log.d("elementFrame",elementFrame.toString());
-//                                            paint.setStyle(Paint.Style.STROKE);
-//                                            paint.setColor(Color.BLACK);
-//                                            canvas.drawColor(Color.BLUE);
-//                                            canvas.drawRect(blockFrame,paint);
-//                                        }
-//                                    }
+                                        for (FirebaseVisionText.Element element: line.getElements()) {
+                                            String elementText = element.getText();
+                                            Float elementConfidence = element.getConfidence();
+                                            List<RecognizedLanguage> elementLanguages = element.getRecognizedLanguages();
+                                            Point[] elementCornerPoints = element.getCornerPoints();
+                                            Rect elementFrame = element.getBoundingBox();
+                                            Log.d("elementFrame",elementFrame.toString());
+                                            if (elementText.toLowerCase().equals(phrase.toLowerCase())){
+//                                                Log.d("PointAndRect",blockText+" -> "+blockFrame.toString());
+                                                Bitmap mutableBitmap = photo.copy(Bitmap.Config.ARGB_8888, true);
+                                                Canvas canvas = new Canvas(mutableBitmap);
+
+                                                Paint paint = new Paint();
+                                                paint.setStrokeWidth(12);
+                                                paint.setColor(Color.BLACK);
+                                                paint.setStyle(Paint.Style.STROKE);
+                                                Rect rectangle = new Rect(elementFrame);
+
+                                                canvas.drawRect(rectangle,paint);
+                                                imageView.setImageBitmap(mutableBitmap);
+                                                break;
+                                            }
+
+                                        }
+                                    }
                                 }
 //                                Toast.makeText(camera.this,resultText, Toast.LENGTH_LONG).show();
                                 vanshaj.setText(resultText);
